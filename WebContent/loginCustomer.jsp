@@ -26,7 +26,7 @@
 				<h:message for="password" />
 			</div>
 			<div>
-		<a href="customerController.jsp"><input type="button" value="Login" name="Login"/></a>
+		<h:commandButton value="Sign in" action="#{customerController.loginCustomer}" />
 	</div>
 		</h:form>
 	</f:view>
