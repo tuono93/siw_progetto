@@ -16,7 +16,10 @@
 			<li><a href='<c:url value="/faces/newCustomer.jsp" />'>Sign up in e-Market</a></li>
 		</ul>
 		<ul>
-			<li><a href='<c:url value="/faces/loginCustomer.jsp" />'>Log in e-Market</a></li>
+			<li><a href='<c:url value="/faces/loginCustomer.jsp" />'>Log in e-Market</a></li>	
+		</ul>
+		<ul>
+			<li><a href='<c:url value="/faces/loginAdministrator.jsp" />'>Log in as administrator</a></li>	
 		</ul>
 	</f:view>
 </body>

@@ -8,6 +8,9 @@
  	<!--  	<non-jta-data-source>PostgreSQL Database</non-jta-data-source> -->
 		<class>model.Customer</class>
 		<class>model.Address</class>
+		<class>model.Product</class>
+		<class>model.ProductDescription</class>
+		
 		<properties>
 			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" />
 			<property name="openjpa.jdbc.DBDictionary" value="postgres" />

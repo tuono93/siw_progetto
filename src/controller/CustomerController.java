@@ -2,12 +2,15 @@ package controller;
 
 import model.CustomerFacade;
 
+import java.util.*;
+
 import model.Address;
 import model.AddressFacade;
 
 import java.util.Date;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
@@ -36,7 +39,6 @@ public class CustomerController {
 	
 	@EJB(beanName ="cFacade")
 	private CustomerFacade customerFacade;
-	
 	
 	
 	
