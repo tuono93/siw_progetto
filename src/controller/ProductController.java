@@ -21,7 +21,7 @@ public class ProductController  {
 
 	@ManagedProperty(value="#{productManager}")
 	private ProductManager productManager;
-	
+
 	
 	private String name;
     private String code;
