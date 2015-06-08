@@ -12,7 +12,7 @@
 <body>
 	<f:view>
 	<h:form>
-		<h1>Hi, ${customerController.customer.firstname}</h1>
+		<h1>Hi, ${customerManager.currentCustomer.firstname}</h1>
 		<h2>Choose an activity:</h2>
 		<h:commandButton value="Logout" action="#{customerController.logoutCustomer}" />
 		</h:form>

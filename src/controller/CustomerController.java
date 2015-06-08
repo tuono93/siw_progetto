@@ -13,12 +13,18 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/tuono93/siw_progetto.git
 
 import model.Customer;
 
 @ManagedBean
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/tuono93/siw_progetto.git
 public class CustomerController {
 	
 	@ManagedProperty(value="#{param.cf}")
@@ -42,25 +48,29 @@ public class CustomerController {
 	@EJB(beanName ="cFacade")
 	private CustomerFacade customerFacade;
 	
-	
+	@ManagedProperty(value = "#{customerManager}")
+	private CustomerManager session;
 	
 	public String createCustomer(){ 
 		// this.customerFacade.deleteCustomers();
 		this.address = this.addressFacade.createAddress(street, houseNumber, zipCode, city, country);
 		this.customer= customerFacade.createCustomer(fc, firstname, lastname, email, password, dateOfBirth,address);
+		this.session.login(customer);
 		return "registeredCustomer";
 	}
 	
 	public String loginCustomer(){
-		customer=this.customerFacade.findCustomer(email);
-		if(customer==null || !(customer.getPassword().equals(this.password)))
+		Customer c=this.customerFacade.findCustomer(email);
+		if(c==null || !(c.getPassword().equals(this.password)))
 			return "failedLogin";
-		else
+		else{
+			this.session.login(c);
 			return "customerHome";
+		}
 	}
 	
 	public String logoutCustomer(){
-		this.customer=null;
+		this.session.logout();
 		return "generalHome.html";
 	}
 	
@@ -145,6 +155,38 @@ public class CustomerController {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public AddressFacade getAddressFacade() {
+		return addressFacade;
+	}
+
+	public void setAddressFacade(AddressFacade addressFacade) {
+		this.addressFacade = addressFacade;
+	}
+
+	public CustomerFacade getCustomerFacade() {
+		return customerFacade;
+	}
+
+	public void setCustomerFacade(CustomerFacade customerFacade) {
+		this.customerFacade = customerFacade;
+	}
+
+	public CustomerManager getSession() {
+		return session;
+	}
+
+	public void setSession(CustomerManager session) {
+		this.session = session;
 	}
 	
 }
