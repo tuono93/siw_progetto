@@ -4,19 +4,21 @@ import model.CustomerFacade;
 
 import java.util.*;
 
+
 import model.Address;
 import model.AddressFacade;
 
 import java.util.Date;
-
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
+
 import model.Customer;
 
 @ManagedBean
+
 public class CustomerController {
 	
 	@ManagedProperty(value="#{param.cf}")
@@ -43,20 +45,24 @@ public class CustomerController {
 	
 	
 	public String createCustomer(){ 
+		// this.customerFacade.deleteCustomers();
 		this.address = this.addressFacade.createAddress(street, houseNumber, zipCode, city, country);
-		this.customer = customerFacade.createCustomer(fc, firstname, lastname, email, password, dateOfBirth,address);
+		this.customer= customerFacade.createCustomer(fc, firstname, lastname, email, password, dateOfBirth,address);
 		return "registeredCustomer";
 	}
 	
-	public Customer getCustomer() {
-		return customer;
+	public String loginCustomer(){
+		customer=this.customerFacade.findCustomer(email);
+		if(customer==null || !(customer.getPassword().equals(this.password)))
+			return "failedLogin";
+		else
+			return "customerHome";
 	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
 	
+	public String logoutCustomer(){
+		this.customer=null;
+		return "generalHome.html";
+	}
 	
 	public String getFc() {
 		return fc;
@@ -125,6 +131,20 @@ public class CustomerController {
 	}
 	public void setCountry(String country) {
 		this.country = country;
+	}
+
+
+
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+
+
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 	
 }

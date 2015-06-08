@@ -21,6 +21,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 @Entity
+@NamedQuery(name = "findCustomer", query = "SELECT c FROM Customer c WHERE c.email = :email")
+
 public class Customer {
 	
 	@Id
@@ -29,7 +31,7 @@ public class Customer {
 	private String firstname;
 	@Column(nullable = false)
 	private String lastname;
-	@Column(nullable = false)
+	@Column(nullable = false, unique=true)
 	private String email;
 	@Column(nullable = false)
 	private String password;

@@ -5,7 +5,6 @@
 	<persistence-unit name="unit-progetto-siw" transaction-type="JTA">
 		<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
 		<jta-data-source>PostgreSQL Database</jta-data-source>
- 	<!--  	<non-jta-data-source>PostgreSQL Database</non-jta-data-source> -->
 		<class>model.Customer</class>
 		<class>model.Address</class>
 		<class>model.Product</class>
@@ -13,9 +12,9 @@
 		
 		<properties>
 			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" />
-			<property name="openjpa.jdbc.DBDictionary" value="postgres" />
+			<property name="openjpa.jdbc.MappingDefaults" value="ForeignKeyDeleteAction=restrict,JoinForeignKeyDeleteAction=restrict"/>
+	
 			<property name="openjpa.Log" value="DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE"/>
-  			<property name="openjpa.jdbc.MappingDefaults" value="ForeignKeyDeleteAction=restrict,JoinForeignKeyDeleteAction=restrict"/>
 		</properties>
 	</persistence-unit>
 </persistence>
