@@ -2,7 +2,7 @@
 	pageEncoding="US-ASCII"%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -11,14 +11,27 @@
 <title>Admin Home</title>
 </head>
 <body>
-<h1><b>You logged as Admin:</b></h1>
-<f:view>
-	    <ul>
-			<li><a href='<c:url value="/faces/productDescriptionCode.jsp" />'>Insert product</a></li>
-		</ul>
+	<h1>
+		<b>You logged as Admin:</b>
+	</h1>
+	<f:view>
+	<h:form>
 		<ul>
-			<li><a href='<c:url value="/faces/productCatalog.jsp" />'>View the product catalog</a></li>	
+			<li><h:commandLink
+							action="#{administrationController.newCustomer}"
+							value="New Customer">
+						</h:commandLink></li>
+			<li><h:commandLink
+							action="#{administrationController.newProduct}"
+							value="New Product">
+						</h:commandLink></li>
+
+			<li><a href='<c:url value="/faces/productCatalog.jsp" />'>View
+					the product catalog</a></li>
 		</ul>
-</f:view>
+		
+		<h:commandButton value="Logout" action="#{administrationController.logoutAdministration}" />
+		</h:form>
+	</f:view>
 </body>
 </html>

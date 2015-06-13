@@ -3,18 +3,13 @@ package model;
 
 
 import java.util.Date;
-
 import java.util.LinkedList;
-
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-
-
 import javax.persistence.NoResultException;
-
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -49,5 +44,13 @@ public class CustomerFacade {
 		Query query=em.createQuery("DELETE FROM Customer c");
 		query.executeUpdate();
 	}
+
+	public void addOrderToCustomer(Customer currentCustomer, Order order) {
+		currentCustomer.getOrders().add(order);
+		this.em.persist(currentCustomer);
+		
+	}
+	
+
 
 }

@@ -15,6 +15,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -39,9 +40,12 @@ public class Customer {
 	@Temporal(TemporalType.DATE)
 	private Date dateOfBirth;
 	@Column(nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateOfRegistration;
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private Address address;
+	@OneToMany(mappedBy="customer")
+	private List<Order> orders;
 	
 	
 	public Customer() {
@@ -59,10 +63,19 @@ public class Customer {
 		Date newDate = calendar.getTime();
 		this.dateOfRegistration = newDate;
 		this.address = address;
+		this.orders= new ArrayList<Order>();
 		
 	}
 
 	
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+
 	public String getPassword() {
 		return password;
 	}

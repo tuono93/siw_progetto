@@ -14,6 +14,17 @@
 	<h:form>
 		<h1>Hi, ${customerManager.currentCustomer.firstname}</h1>
 		<h2>Choose an activity:</h2>
+		<ul>
+		<li><a href='<c:url value="/faces/productCatalog.jsp" />'>View Product Catalog</a></li>	
+		<li><h:commandLink
+							action="#{customerController.createOrder}"
+							value="New Order">
+						</h:commandLink></li>
+		<li><h:commandLink
+							action="#{orderController.goShoppingCart}"
+							value="Shopping Cart">
+						</h:commandLink></li>
+		</ul>
 		<h:commandButton value="Logout" action="#{customerController.logoutCustomer}" />
 		</h:form>
 	</f:view>

@@ -17,12 +17,14 @@
 		<h:form>
 			<div>
 				Code:
-				<h:inputText value="#{productController.code}" required="true"
+				<h:inputText value="#{productController.productManager.codeProductDescription}" required="true"
 					requiredMessage="Code is mandatory" id="code" />
 				<h:message for="code" />
 			</div>
+			<div></div>
+			<div><a href='<c:url value="/faces/adminHome.jsp" />'>Go Home</a> </div>
 			 <div>
-		 <h:commandButton value="Submit"  action="#{productController.controlExistenceProduct}"/>
+		        <h:commandButton value="Submit"  action="#{productController.controlExistenceProduct}"/>
 	    </div>
 </h:form>
 </f:view>

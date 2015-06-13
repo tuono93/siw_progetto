@@ -35,7 +35,7 @@
 					required="true" requiredMessage="Password is mandatory"
 					validatorMessage="Password: min 6 characters"
 					id="password"> 
-					<f:validateLength minimum="6" maximum="6"/>
+					<f:validateLength minimum="6" maximum="20"/>
 					</h:inputSecret>
 				<h:message for="password" />
 			</div>
@@ -96,7 +96,8 @@
 					requiredMessage="Country is mandatory" id="country" />
 				<h:message for="country" />
 			</div>
-			
+			<div></div>
+			<div><a href="javascript:history.go(-1);">Back</a></div>
 			
 			<div>
 				<h:commandButton value="Sign up" action="#{customerController.createCustomer}" />

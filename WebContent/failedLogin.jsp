@@ -15,7 +15,7 @@
 			<li><a href='<c:url value="/faces/generalHome.jsp" />'>Go general home</a></li>
 		</ul>
 		<ul>
-			<li><a href='<c:url value="/faces/loginCustomer.jsp" />'>Try again to Login</a></li>
+			<li><a href="javascript:history.go(-1);">Try again to log in</a></li>
 		</ul>
 </f:view>
 </body>

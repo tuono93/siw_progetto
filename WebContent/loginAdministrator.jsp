@@ -14,17 +14,16 @@
 		<h:form>
 			<div>
 				Password:
-				<h:inputSecret value="#{administratorController.password}"
-					required="true" requiredMessage="Insert the admin password"
-					validatorMessage="Insert the correct Password"
-					id="password" >
-				<f:validateRegex pattern="emarket" />
-				</h:inputSecret>
+				<h:inputSecret value="#{administrationController.password}"
+					required="true" requiredMessage="Insert your password"
+					id="password" />
 				<h:message for="password" />
 			</div>
+			<div></div>
+			<div><a href="javascript:history.go(-1);">Back</a> </div>
 			<div>
-				<h:commandButton value="Sign up" action="#{administratorController.convalidatePassword}" />
-			</div>
+		<h:commandButton value="Sign in" action="#{administrationController.login}" />
+	</div>
 		</h:form>
 	</f:view>
 </body>

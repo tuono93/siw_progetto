@@ -13,12 +13,8 @@
 	<f:view>
 		<h1><b>Welcome in e-Market</b></h1>
 		<ul>
-			<li><a href='<c:url value="/faces/newCustomer.jsp" />'>Sign up in e-Market</a></li>
-		</ul>
-		<ul>
 			<li><a href='<c:url value="/faces/loginCustomer.jsp" />'>Log in e-Market</a></li>	
-		</ul>
-		<ul>
+			<li><a href='<c:url value="/faces/productCatalog.jsp" />'>View Product Catalog</a></li>	
 			<li><a href='<c:url value="/faces/loginAdministrator.jsp" />'>Log in as administrator</a></li>	
 		</ul>
 	</f:view>

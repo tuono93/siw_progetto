@@ -15,7 +15,7 @@
 	</h1>
 	<f:view>
 		<h:form>
-		<div>Code: ${productController.code}</div>
+		<div>Code: ${productController.productManager.codeProductDescription}</div>
 			<div>
 				Name:
 				<h:inputText value="#{productController.name}" required="true"
@@ -42,7 +42,8 @@
 					required="false" cols="20" rows="5" />
 
 			</div>
-
+			<div></div>
+			<div><a href='<c:url value="/faces/adminHome.jsp" />'>Go Home</a> </div>
 			<div>
 				<h:commandButton value="Submit"
 					action="#{productController.createProduct}" />

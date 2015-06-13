@@ -12,7 +12,7 @@
 <h1><b>Add a Product:</b></h1>
 <f:view>
 		<h:form>
-			<div>Code: ${productController.code}</div>
+			<div>Code: ${productController.productManager.codeProductDescription}</div>
 			<div>
 				Quantity:
 				<h:inputText value="#{productController.quantity}" 
@@ -22,6 +22,8 @@
 				id="quantity"/>
 				<h:message for="quantity" />
 			</div>
+			<div></div>
+		<div><a href='<c:url value="/faces/adminHome.jsp" />'>Home</a> </div>
 	       <div>
 		 <h:commandButton value="Submit"  action="#{productController.addProduct}"/>
 	    </div>
