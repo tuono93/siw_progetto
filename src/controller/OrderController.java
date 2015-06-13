@@ -41,7 +41,7 @@ public class OrderController {
 			return "customerHome";
 		else {
 			ProductDescription pd=this.pdFacade.findProductDescription(this.productDescriptionCode);
-			if(pd==null) return "newOrderLine";
+			if(pd==null) return "nonExistingProduct";
 			else{
 				OrderLine ol=this.orderLineFacade.createOrderLine(pd, this.quantity);
 				this.sessionOrder.getCurrentOrder().getOrderLines().add(ol);
@@ -60,6 +60,11 @@ public class OrderController {
 	public String deleteCurrentOrder(){
 		this.sessionOrder.setCurrentOrder(null);
 		return "shoppingCartEmpty";
+	}
+	
+	public Double getTotal(){
+		return this.orderFacade.getTotal(this.sessionOrder.getCurrentOrder());
+			
 	}
 
 	public OrderFacade getOrderFacade() {
@@ -105,6 +110,16 @@ public class OrderController {
 	public void confirmCurrentOrder(Order currentOrder) {
 			this.orderFacade.confirmOrder(currentOrder);
 	}
+
+	public ProductDescriptionFacade getPdFacade() {
+		return pdFacade;
+	}
+
+	public void setPdFacade(ProductDescriptionFacade pdFacade) {
+		this.pdFacade = pdFacade;
+	}
+
+	
 
 
 

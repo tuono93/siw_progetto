@@ -82,6 +82,7 @@ public class CustomerController {
 		Order currentOrder = this.oc.getSessionOrder().getCurrentOrder();
 		this.oc.confirmCurrentOrder(currentOrder);
 		this.customerFacade.addOrderToCustomer(this.session.getCurrentCustomer(), currentOrder);
+		this.oc.getSessionOrder().setCurrentOrder(null);
 		return "summaryOrder";
 	}
 	
