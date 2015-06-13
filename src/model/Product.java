@@ -1,7 +1,5 @@
 package model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,6 +16,9 @@ public class Product {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@ManyToOne
+	private Provider provider;
 
 	public Product(){
 	}
@@ -29,6 +30,21 @@ public class Product {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	public Provider getProvider() {
+		return provider;
+	}
+
+	public void setProvider(Provider provider) {
+		this.provider = provider;
+	}
+
+
+	
+	
+	
+
+
 
 
 }

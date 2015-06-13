@@ -13,18 +13,9 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/tuono93/siw_progetto.git
-
 import model.Customer;
 
 @ManagedBean
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/tuono93/siw_progetto.git
 public class CustomerController {
 	
 	@ManagedProperty(value="#{param.cf}")

@@ -11,7 +11,7 @@
 </head>
 <body>
 	<h1>
-		<b>Insert a new Product:</b>
+		<b>Insert new Product:</b>
 	</h1>
 	<f:view>
 		<h:form>
