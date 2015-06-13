@@ -1,8 +1,12 @@
 package model;
 import javax.ejb.Stateless;
+
 import java.util.*;
+
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 @Stateless(name="pdFacade")
 public class ProductDescriptionFacade {
@@ -51,5 +55,17 @@ public class ProductDescriptionFacade {
 		return pd;
 	   
 	   
+   }
+   
+   public ProductDescription findProductDescription(String code){
+	   Query query=this.em.createQuery("SELECT pd FROM ProductDescription pd WHERE pd.code= :code");
+	   query.setParameter("code", code);
+	   try {
+		   ProductDescription pd=(ProductDescription) query.getSingleResult();
+		   return pd;
+	   }
+	   catch (NoResultException e){
+		   return null;
+	   }
    }
 }

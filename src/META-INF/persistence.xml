@@ -2,20 +2,30 @@
 <persistence version="2.0"
 	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-	<persistence-unit name="unit-progetto-siw" transaction-type="JTA">
+	<persistence-unit name="unit-progetto-siw"
+		transaction-type="JTA">
 		<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
 		<jta-data-source>PostgreSQL Database</jta-data-source>
 		<class>model.Customer</class>
 		<class>model.Address</class>
 		<class>model.Product</class>
 		<class>model.ProductDescription</class>
+<<<<<<< HEAD
 		<class>model.Provider</class>
 		
+=======
+		<class>model.Order</class>
+		<class>model.OrderLine</class>
+
+>>>>>>> branch 'master' of https://github.com/tuono93/siw_progetto.git
 		<properties>
 			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" />
-			<property name="openjpa.jdbc.MappingDefaults" value="ForeignKeyDeleteAction=restrict,JoinForeignKeyDeleteAction=restrict"/>
-	
-			<property name="openjpa.Log" value="DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE"/>
+
+			<property name="openjpa.jdbc.MappingDefaults"
+				value="ForeignKeyDeleteAction=restrict,JoinForeignKeyDeleteAction=restrict" />
+			<property name="openjpa.Log"
+				value="DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE" />
+				
 		</properties>
 	</persistence-unit>
 </persistence>

@@ -10,8 +10,8 @@
 </head>
 <body>
 <f:view>
-<h1><b>Your registration was successful!!</b></h1>
-<a href='<c:url value="/faces/customerHome.jsp" />'>Go Home</a>
+<h1><b>The customer has been correctly registered</b></h1>
+<a href='<c:url value="/faces/adminHome.jsp" />'>Go Home</a>
 </f:view>
 </body>
 </html>

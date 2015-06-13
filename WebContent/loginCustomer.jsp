@@ -25,6 +25,8 @@
 					id="password" />
 				<h:message for="password" />
 			</div>
+			<div></div>
+			<div><a href="javascript:history.go(-1);">Back</a> </div>
 			<div>
 		<h:commandButton value="Sign in" action="#{customerController.loginCustomer}" />
 	</div>
