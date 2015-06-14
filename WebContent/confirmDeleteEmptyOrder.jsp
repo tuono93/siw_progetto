@@ -12,18 +12,14 @@
 <body>
 <f:view>
 	<h1>
-		<b>Shopping Cart</b>
+		<b>e-Market</b>
 	</h1>
 	<h2>
-<<<<<<< HEAD
-		<b>Are you sure to delete current order, ${customerManager.currentCustomer.firstname}?</b>
-=======
-		<b>Are you sure to delete current order?, ${customerManager.currentCustomer.firstname}</b>
->>>>>>> branch 'master' of https://github.com/tuono93/siw_progetto.git
+		<b>${customerManager.currentCustomer.firstname}, the order you've just created will be deleted. Are you sure?</b>
 	</h2>
 	<h:form>
 
-		<div><a href='<c:url value="/faces/shoppingCart.jsp" />'>No</a>      <h:commandLink action="#{orderController.deleteCurrentOrder}"
+		<div><a href='<c:url value="/faces/newFirstOrderLine.jsp" />'>No, go back</a>    <h:commandLink action="#{orderController.goHomeAndDelete}"
 				value="Yes">
 			</h:commandLink></div>
 

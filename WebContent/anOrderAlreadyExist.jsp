@@ -12,19 +12,16 @@
 <body>
 <f:view>
 	<h1>
-		<b>Shopping Cart</b>
+		<b>e-Market</b>
 	</h1>
 	<h2>
-<<<<<<< HEAD
-		<b>Are you sure to delete current order, ${customerManager.currentCustomer.firstname}?</b>
-=======
-		<b>Are you sure to delete current order?, ${customerManager.currentCustomer.firstname}</b>
->>>>>>> branch 'master' of https://github.com/tuono93/siw_progetto.git
+		<b>${customerManager.currentCustomer.firstname}, You can't create a new Order</b>
 	</h2>
+	<h3>To create a new Order, go in your shopping Cart and delete your current Order</h3>
 	<h:form>
 
-		<div><a href='<c:url value="/faces/shoppingCart.jsp" />'>No</a>      <h:commandLink action="#{orderController.deleteCurrentOrder}"
-				value="Yes">
+		<div><a href='<c:url value="/faces/customerHome.jsp" />'>Go home</a>     <h:commandLink action="#{orderController.goShoppingCart}"
+				value="Shopping Cart">
 			</h:commandLink></div>
 
 </h:form>

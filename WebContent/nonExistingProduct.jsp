@@ -12,11 +12,16 @@
 <f:view>
 <h1><b>Non existing product</b></h1>
 <h2>The product you've inserted was not found in our product catalog</h2>
+<<<<<<< HEAD
 <ul>
 			<li><a href='<c:url value="/faces/customerHome.jsp" />'>Go home</a></li>
 		</ul>
 		<ul>
 			<li><a href="javascript:history.go(-1);">Insert another product</a></li>
+=======
+		<ul>
+			<li><a href='<c:url value="/faces/newFirstOrderLine.jsp" />'>Add another product</a> </li>
+>>>>>>> branch 'master' of https://github.com/tuono93/siw_progetto.git
 		</ul>
 </f:view>
 </body>

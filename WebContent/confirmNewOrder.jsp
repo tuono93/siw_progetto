@@ -21,6 +21,7 @@
 <ul>
 		<c:forEach var="orderLine" items="#{orderManager.currentOrder.orderLines}">
 		<li><div><b>Product:</b> ${orderLine.productDescription.name}</div>
+<<<<<<< HEAD
 		<div><b>Unit Price:</b> ${orderLine.productDescription.price}</div>
 			<div><b>Quantity:</b> ${orderLine.quantity}</div></li>
 			<div>*********************</div>
@@ -28,6 +29,15 @@
 		</ul>
 		<div><b>TOTAL PRICE:</b> ${orderController.getTotal()}</div>
 		<div><a href='<c:url value="/faces/shoppingCart.jsp" />'>No</a>      <h:commandLink action="#{customerController.confirmCurrentOrder}"
+=======
+		<div><b>Unit Price:</b> ${orderLine.realUnitPrice}</div>
+			<div><b>Quantity:</b> ${orderLine.quantity}</div></li>
+			<div>*********************</div>
+		</c:forEach>
+		</ul>
+		<div><b>TOTAL PRICE:</b> ${orderController.getTotal()}</div>
+		<div><a href='<c:url value="/faces/shoppingCart.jsp" />'>No</a>      <h:commandLink action="#{orderController.confirmCurrentOrder}"
+>>>>>>> branch 'master' of https://github.com/tuono93/siw_progetto.git
 				value="Yes">
 			</h:commandLink></div>
 

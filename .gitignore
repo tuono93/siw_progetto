@@ -1,2 +1,5 @@
 /build/
 *.jar
+/.classpath
+/WebContent/
+/.gitignore

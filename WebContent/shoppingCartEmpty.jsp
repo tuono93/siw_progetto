@@ -10,6 +10,7 @@
 <title>e-Market</title>
 </head>
 <body>
+<<<<<<< HEAD
 <f:view>
 	<h1>
 		<b>Shopping Cart</b>
@@ -17,6 +18,15 @@
 	<h2>
 		<b>Your shopping cart is empty</b>
 	</h2>
+=======
+	<h1>
+		<b>Shopping Cart</b>
+	</h1>
+	<h2>
+		<b>Your shopping cart is empty</b>
+	</h2>
+	<f:view>
+>>>>>>> branch 'master' of https://github.com/tuono93/siw_progetto.git
 	<h:form>
 	<ul>
 		<li><h:commandLink action="#{customerController.createOrder}"

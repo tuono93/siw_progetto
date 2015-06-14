@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JPA Lib"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Postgres Lib"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JPA Lib"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Postgres Lib"/>
 	<classpathentry kind="lib" path="C:/Program Files/apache-tomee-jaxrs-1.7.1/lib/bval-core-0.5.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/apache-tomee-jaxrs-1.7.1/lib/bval-jsr303-0.5.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/apache-tomee-jaxrs-1.7.1/lib/catalina.jar"/>

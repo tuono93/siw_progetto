@@ -1,3 +1,4 @@
+
 package model;
 
 import java.util.ArrayList;
@@ -44,7 +45,9 @@ public class Customer {
 	private Date dateOfRegistration;
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private Address address;
-	
+	@OneToMany
+	@JoinColumn(name ="orders_id")
+	private List<Order> orders;
 	
 	
 	public Customer() {
@@ -61,7 +64,19 @@ public class Customer {
 		Calendar calendar = new GregorianCalendar();
 		Date newDate = calendar.getTime();
 		this.dateOfRegistration = newDate;
-		this.address = address;}
+		this.address = address;
+		this.orders= new ArrayList<Order>();
+		
+	}
+
+	
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
 
 	public String getPassword() {
 		return password;
@@ -135,3 +150,4 @@ public class Customer {
 	
 	
 }
+

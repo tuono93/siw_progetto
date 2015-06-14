@@ -42,6 +42,9 @@ public class CustomerController {
 	@ManagedProperty(value ="#{customerManager}")
 	private CustomerManager session;
 	
+	@ManagedProperty(value ="#{orderController}")
+	private OrderController oc;
+	
 	public String createCustomer(){ 
 		this.address = this.addressFacade.createAddress(street, houseNumber, zipCode, city, country);
 		this.customer= customerFacade.createCustomer(fc, firstname, lastname, email, password, dateOfBirth,address);
@@ -55,6 +58,22 @@ public class CustomerController {
 		else{
 			this.session.login(c);
 			return "customerHome";
+		}
+	}
+
+	
+	public String logoutCustomer(){
+		this.session.logout();
+		this.oc.getSessionOrder().setCurrentOrder(null);
+		return "generalHome.html";
+	}
+	
+	public String createOrder(){
+		Customer currentCustomer = this.session.getCurrentCustomer();
+		if(currentCustomer==null)
+			return "loginCustomer";
+		else {
+			return this.oc.createOrder(currentCustomer);
 		}
 	}
 	
