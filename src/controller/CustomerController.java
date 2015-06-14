@@ -60,6 +60,7 @@ public class CustomerController {
 			return "customerHome";
 		}
 	}
+
 	
 	public String logoutCustomer(){
 		this.session.logout();
@@ -76,6 +77,7 @@ public class CustomerController {
 		}
 	}
 	
+
 	public String getFc() {
 		return fc;
 	}
