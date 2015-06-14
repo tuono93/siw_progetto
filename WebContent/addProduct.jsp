@@ -12,7 +12,7 @@
 <f:view>
   <h1><b>Insert the quantity:</b></h1>
 		<h:form>
-			<div>Code: ${productController.productManager.codeProductDescription}</div>
+			<div>Code: ${productController.code}</div>
 			<div>
 				Quantity:
 				<h:inputText value="#{productController.quantity}" 

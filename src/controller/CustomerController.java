@@ -3,8 +3,6 @@ package controller;
 import model.CustomerFacade;
 import model.Address;
 import model.AddressFacade;
-import model.Order;
-
 import java.util.Date;
 
 import javax.ejb.EJB;
@@ -12,18 +10,11 @@ import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/tuono93/siw_progetto.git
 import model.Customer;
 
-<<<<<<< HEAD
-@ManagedBean
-=======
+
 @ManagedBean(name= "customerController")
 @RequestScoped
->>>>>>> branch 'master' of https://github.com/tuono93/siw_progetto.git
 public class CustomerController {
 	
 	@ManagedProperty(value="#{param.cf}")
@@ -40,9 +31,7 @@ public class CustomerController {
 	private String country;
 	private Customer customer;
 	private Address address;
-	
-	@ManagedProperty(value ="#{orderController}")
-	private OrderController oc;
+
 	
 	@EJB(beanName="aFacade")
 	private AddressFacade addressFacade;
@@ -54,7 +43,6 @@ public class CustomerController {
 	private CustomerManager session;
 	
 	public String createCustomer(){ 
-		this.customerFacade.deleteCustomers();
 		this.address = this.addressFacade.createAddress(street, houseNumber, zipCode, city, country);
 		this.customer= customerFacade.createCustomer(fc, firstname, lastname, email, password, dateOfBirth,address);
 		return "registeredCustomer";
@@ -70,29 +58,7 @@ public class CustomerController {
 		}
 	}
 	
-	public String logoutCustomer(){
-		this.session.logout();
-		this.oc.getSessionOrder().setCurrentOrder(null);
-		return "generalHome.html";
-	}
-	
-	public String createOrder(){
-		Customer currentCustomer = this.session.getCurrentCustomer();
-		if(currentCustomer==null)
-			return "loginCustomer";
-		else {
-			return this.oc.createOrder(currentCustomer);
-		}
-	}
-	
-	public String confirmCurrentOrder(){
-		Order currentOrder = this.oc.getSessionOrder().getCurrentOrder();
-		this.oc.confirmCurrentOrder(currentOrder);
-		this.customerFacade.addOrderToCustomer(this.session.getCurrentCustomer(), currentOrder);
-		this.oc.getSessionOrder().setCurrentOrder(null);
-		return "summaryOrder";
-	}
-	
+
 	public String getFc() {
 		return fc;
 	}
@@ -208,13 +174,6 @@ public class CustomerController {
 		this.session = session;
 	}
 
-	public OrderController getOc() {
-		return oc;
-	}
-
-	public void setOc(OrderController oc) {
-		this.oc = oc;
-	}
 	
 	
 	

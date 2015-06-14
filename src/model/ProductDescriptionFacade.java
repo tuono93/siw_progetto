@@ -58,14 +58,7 @@ public class ProductDescriptionFacade {
    }
    
    public ProductDescription findProductDescription(String code){
-	   Query query=this.em.createQuery("SELECT pd FROM ProductDescription pd WHERE pd.code= :code");
-	   query.setParameter("code", code);
-	   try {
-		   ProductDescription pd=(ProductDescription) query.getSingleResult();
-		   return pd;
-	   }
-	   catch (NoResultException e){
-		   return null;
+	  return em.find(ProductDescription.class, code);
+	  
 	   }
    }
-}

@@ -45,11 +45,7 @@ public class CustomerFacade {
 		query.executeUpdate();
 	}
 
-	public void addOrderToCustomer(Customer currentCustomer, Order order) {
-		currentCustomer.getOrders().add(order);
-		this.em.persist(currentCustomer);
-		
-	}
+
 	
 
 

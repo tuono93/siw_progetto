@@ -10,14 +10,9 @@
 		<class>model.Address</class>
 		<class>model.Product</class>
 		<class>model.ProductDescription</class>
-<<<<<<< HEAD
 		<class>model.Provider</class>
-		
-=======
 		<class>model.Order</class>
 		<class>model.OrderLine</class>
-
->>>>>>> branch 'master' of https://github.com/tuono93/siw_progetto.git
 		<properties>
 			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" />
 

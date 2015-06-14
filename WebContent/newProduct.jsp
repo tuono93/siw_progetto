@@ -15,7 +15,7 @@
 	</h1>
 	<f:view>
 		<h:form>
-		<div>Code: ${productController.productManager.codeProductDescription}</div>
+		<div>Code: ${productController.code}</div>
 			<div>
 				Name:
 				<h:inputText value="#{productController.name}" required="true"
