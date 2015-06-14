@@ -23,6 +23,7 @@ public class OrderController {
 	private ProductDescriptionFacade pdFacade;
 	private String productDescriptionCode;
 	private Integer quantity;
+	private Order order;
 
 	@ManagedProperty(value ="#{orderManager}")
 	private OrderManager sessionOrder;
@@ -31,20 +32,25 @@ public class OrderController {
 	}
 
 	public String createOrder(Customer c){
+		if(this.sessionOrder.getCurrentOrder()!=null)
+			return "anOrderAlreadyExist";
+		else{
 		Order o=this.orderFacade.createOrder(c);
 		this.sessionOrder.setCurrentOrder(o);
-		return "newOrderLine";
+		return "newFirstOrderLine";
+		}
 	}
 
 	public String createOrderLine(){
-		if(this.sessionOrder.getCurrentOrder()==null)
+		Order currentOrder = this.sessionOrder.getCurrentOrder();
+		if(currentOrder==null)
 			return "customerHome";
 		else {
 			ProductDescription pd=this.pdFacade.findProductDescription(this.productDescriptionCode);
 			if(pd==null) return "nonExistingProduct";
 			else{
-				OrderLine ol=this.orderLineFacade.createOrderLine(pd, this.quantity);
-				this.sessionOrder.getCurrentOrder().getOrderLines().add(ol);
+				OrderLine ol=this.orderLineFacade.createOrderLine(currentOrder, pd, this.quantity);
+				currentOrder.getOrderLines().add(ol);
 				return "shoppingCart";
 			}
 		}
@@ -58,8 +64,15 @@ public class OrderController {
 	}
 
 	public String deleteCurrentOrder(){
+		this.orderFacade.deleteCurrentOrder(this.sessionOrder.getCurrentOrder());
 		this.sessionOrder.setCurrentOrder(null);
 		return "shoppingCartEmpty";
+	}
+	
+	public String goHomeAndDelete(){
+		this.orderFacade.deleteCurrentOrder(this.sessionOrder.getCurrentOrder());
+		this.sessionOrder.setCurrentOrder(null);
+		return "customerHome";
 	}
 	
 	public Double getTotal(){
@@ -107,8 +120,12 @@ public class OrderController {
 		this.quantity = quantity;
 	}
 
-	public void confirmCurrentOrder(Order currentOrder) {
+	public String confirmCurrentOrder() {
+		Order currentOrder=this.sessionOrder.getCurrentOrder();
 			this.orderFacade.confirmOrder(currentOrder);
+			this.order=currentOrder;
+			this.sessionOrder.setCurrentOrder(null);
+			return "summaryOrder";
 	}
 
 	public ProductDescriptionFacade getPdFacade() {
@@ -117,6 +134,14 @@ public class OrderController {
 
 	public void setPdFacade(ProductDescriptionFacade pdFacade) {
 		this.pdFacade = pdFacade;
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 
 	

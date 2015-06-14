@@ -4,11 +4,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -19,7 +23,11 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "orders")
 public class Order {
-						
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date openingOrderDate;
@@ -29,7 +37,7 @@ public class Order {
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date consignmentOrderDate;
-	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@OneToMany(cascade = {CascadeType.ALL})
 	@JoinColumn(name ="orders_id")
 	private List<OrderLine> orderLines;
 	@ManyToOne
@@ -38,13 +46,14 @@ public class Order {
 	private String state;
 	
 	public Order() {
-	
 	}
 
 	public Order(Customer customer) {
 		Calendar calendar = new GregorianCalendar();
 		Date newDate = calendar.getTime();
 		this.openingOrderDate = newDate;
+		this.closingOrderDate=newDate;
+		this.consignmentOrderDate=newDate;
 		this.customer = customer;
 		this.orderLines= new ArrayList<OrderLine>();
 		this.state="open";
@@ -103,9 +112,23 @@ public class Order {
 		this.state = state;
 	}
 	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 	
-	
-	
+	public Double getTotal() {
+		Iterator<OrderLine> it=this.orderLines.iterator();
+		Double total=0.0;
+		while(it.hasNext()){
+			OrderLine ol=it.next();
+			total=total+ (ol.getRealUnitPrice()* ol.getQuantity());
+		}
+		return total;
+	}
 	
 	
 }

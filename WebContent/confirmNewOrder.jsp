@@ -21,13 +21,13 @@
 <ul>
 		<c:forEach var="orderLine" items="#{orderManager.currentOrder.orderLines}">
 		<li><div><b>Product:</b> ${orderLine.productDescription.name}</div>
-		<div><b>Unit Price:</b> ${orderLine.productDescription.price}</div>
+		<div><b>Unit Price:</b> ${orderLine.realUnitPrice}</div>
 			<div><b>Quantity:</b> ${orderLine.quantity}</div></li>
 			<div>*********************</div>
 		</c:forEach>
 		</ul>
 		<div><b>TOTAL PRICE:</b> ${orderController.getTotal()}</div>
-		<div><a href='<c:url value="/faces/shoppingCart.jsp" />'>No</a>      <h:commandLink action="#{customerController.confirmCurrentOrder}"
+		<div><a href='<c:url value="/faces/shoppingCart.jsp" />'>No</a>      <h:commandLink action="#{orderController.confirmCurrentOrder}"
 				value="Yes">
 			</h:commandLink></div>
 

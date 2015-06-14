@@ -21,6 +21,8 @@ public class OrderLine {
 	private ProductDescription productDescription;
 	@Column(nullable=false)
 	private Integer quantity;
+	@Column(nullable=false)
+	private Double realUnitPrice;
 	
 	public OrderLine(){
 	}
@@ -28,6 +30,7 @@ public class OrderLine {
 	public OrderLine(ProductDescription productDescription, Integer quantity) {
 		this.productDescription = productDescription;
 		this.quantity = quantity;
+		this.realUnitPrice=productDescription.getPrice();
 	}
 
 
@@ -58,6 +61,14 @@ public class OrderLine {
 
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
+	}
+
+	public Double getRealUnitPrice() {
+		return realUnitPrice;
+	}
+
+	public void setCurrentUnitPrice(Double realUnitPrice) {
+		this.realUnitPrice = realUnitPrice;
 	}
 	
 	
