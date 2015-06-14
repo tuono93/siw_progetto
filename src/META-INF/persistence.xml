@@ -10,9 +10,9 @@
 		<class>model.Address</class>
 		<class>model.Product</class>
 		<class>model.ProductDescription</class>
+		<class>model.Provider</class>
 		<class>model.Order</class>
 		<class>model.OrderLine</class>
-
 		<properties>
 			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" />
 

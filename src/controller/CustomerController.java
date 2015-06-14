@@ -3,8 +3,6 @@ package controller;
 import model.CustomerFacade;
 import model.Address;
 import model.AddressFacade;
-import model.Order;
-
 import java.util.Date;
 
 import javax.ejb.EJB;
@@ -12,8 +10,8 @@ import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-
 import model.Customer;
+
 
 @ManagedBean(name= "customerController")
 @RequestScoped
@@ -33,9 +31,7 @@ public class CustomerController {
 	private String country;
 	private Customer customer;
 	private Address address;
-	
-	@ManagedProperty(value ="#{orderController}")
-	private OrderController oc;
+
 	
 	@EJB(beanName="aFacade")
 	private AddressFacade addressFacade;
@@ -46,8 +42,10 @@ public class CustomerController {
 	@ManagedProperty(value ="#{customerManager}")
 	private CustomerManager session;
 	
+	@ManagedProperty(value ="#{orderController}")
+	private OrderController oc;
+	
 	public String createCustomer(){ 
-		this.customerFacade.deleteCustomers();
 		this.address = this.addressFacade.createAddress(street, houseNumber, zipCode, city, country);
 		this.customer= customerFacade.createCustomer(fc, firstname, lastname, email, password, dateOfBirth,address);
 		return "registeredCustomer";
@@ -77,8 +75,6 @@ public class CustomerController {
 			return this.oc.createOrder(currentCustomer);
 		}
 	}
-	
-	
 	
 	public String getFc() {
 		return fc;
@@ -195,13 +191,6 @@ public class CustomerController {
 		this.session = session;
 	}
 
-	public OrderController getOc() {
-		return oc;
-	}
-
-	public void setOc(OrderController oc) {
-		this.oc = oc;
-	}
 	
 	
 	

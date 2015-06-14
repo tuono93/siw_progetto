@@ -19,7 +19,7 @@
 	</h2>
 	<h:form>
 
-		<div><a href="javascript:history.go(-1);">No, go back</a>     <h:commandLink action="#{orderController.goHomeAndDelete}"
+		<div><a href='<c:url value="/faces/newFirstOrderLine.jsp" />'>No, go back</a>    <h:commandLink action="#{orderController.goHomeAndDelete}"
 				value="Yes">
 			</h:commandLink></div>
 

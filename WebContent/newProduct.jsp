@@ -11,11 +11,11 @@
 </head>
 <body>
 	<h1>
-		<b>Insert a new Product:</b>
+		<b>Insert new Product:</b>
 	</h1>
 	<f:view>
 		<h:form>
-		<div>Code: ${productController.productManager.codeProductDescription}</div>
+		<div>Code: ${productController.code}</div>
 			<div>
 				Name:
 				<h:inputText value="#{productController.name}" required="true"

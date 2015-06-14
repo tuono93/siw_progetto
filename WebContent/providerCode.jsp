@@ -8,23 +8,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Product Description Code</title>
+<title>Provider Code</title>
 </head>
 <body>
-<h1><b>Insert code of Product:</b></h1>
 <f:view>
-
+<h1><b>Now, insert provider code</b></h1>
+<h2>Insert vatin of Provider:</h2>
 		<h:form>
 			<div>
-				Code:
-				<h:inputText value="#{productController.code}" required="true"
-					requiredMessage="Code is mandatory" id="code" />
-				<h:message for="code" />
+				Vatin:
+				<h:inputText value="#{productController.vatin}" required="true"
+					requiredMessage="Vatin is mandatory" id="vatin" />
+				<h:message for="vatin" />
 			</div>
-			<div></div>
-			<div><a href='<c:url value="/faces/adminHome.jsp" />'>Go Home</a> </div>
 			 <div>
-		        <h:commandButton value="Submit"  action="#{productController.controlExistenceProduct}"/>
+		 <h:commandButton value="Submit"  action="#{productController.createOrAddProvider}"/>
 	    </div>
 </h:form>
 </f:view>

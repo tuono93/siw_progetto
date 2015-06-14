@@ -9,6 +9,9 @@ import model.Order;
 @SessionScoped
 public class OrderManager {
 	private Order currentOrder;
+	
+	public OrderManager(){
+	}
 
 	public Order getCurrentOrder() {
 		return currentOrder;
@@ -17,6 +20,6 @@ public class OrderManager {
 	public void setCurrentOrder(Order currentOrder) {
 		this.currentOrder = currentOrder;
 	}
-	
+
 	
 }
