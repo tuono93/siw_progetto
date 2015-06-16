@@ -45,7 +45,18 @@ public class CustomerFacade {
 		query.executeUpdate();
 	}
 
-	
+	public List<Order> getOrders(Customer c){
+		Query query= this.em.createQuery("SELECT o FROM Order o WHERE o.customer.fc= :fc");
+		query.setParameter("fc", c.getFc());
+		List<Order> orders;
+		try {
+		orders= query.getResultList();
+		} catch (
+		NoResultException e){
+		orders=null;
+		}
+		return orders;
+		}
 
 
 }

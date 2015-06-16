@@ -2,6 +2,7 @@
 	pageEncoding="US-ASCII"%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,7 @@
 	</h1>
 	<f:view>
 		<h:form>
-		<div>Code: ${productController.code}</div>
+			<div>Code: ${productController.code}</div>
 			<div>
 				Name:
 				<h:inputText value="#{productController.name}" required="true"
@@ -42,8 +43,10 @@
 					required="false" cols="20" rows="5" />
 
 			</div>
-			<div></div>
-			<div><a href='<c:url value="/faces/adminHome.jsp" />'>Go Home</a> </div>
+			<ul>
+				<li><a href='<c:url value="/faces/adminHome.jsp" />'>Back
+						To Home</a></li>
+			</ul>
 			<div>
 				<h:commandButton value="Submit"
 					action="#{productController.createProduct}" />

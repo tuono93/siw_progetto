@@ -3,20 +3,24 @@ package controller;
 import model.CustomerFacade;
 import model.Address;
 import model.AddressFacade;
+
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+
 import model.Customer;
+import model.Order;
 
 
 @ManagedBean(name= "customerController")
 @RequestScoped
 public class CustomerController {
-	
+
 	@ManagedProperty(value="#{param.cf}")
 	private String fc;
 	private String firstname;
@@ -32,25 +36,25 @@ public class CustomerController {
 	private Customer customer;
 	private Address address;
 
-	
+
 	@EJB(beanName="aFacade")
 	private AddressFacade addressFacade;
-	
+
 	@EJB(beanName ="cFacade")
 	private CustomerFacade customerFacade;
-	
+
 	@ManagedProperty(value ="#{customerManager}")
 	private CustomerManager session;
-	
+
 	@ManagedProperty(value ="#{orderController}")
 	private OrderController oc;
-	
+
 	public String createCustomer(){ 
 		this.address = this.addressFacade.createAddress(street, houseNumber, zipCode, city, country);
 		this.customer= customerFacade.createCustomer(fc, firstname, lastname, email, password, dateOfBirth,address);
 		return "registeredCustomer";
 	}
-	
+
 	public String loginCustomer(){
 		Customer c=this.customerFacade.findCustomer(email);
 		if(c==null || !(c.getPassword().equals(this.password)))
@@ -61,13 +65,13 @@ public class CustomerController {
 		}
 	}
 
-	
+
 	public String logoutCustomer(){
 		this.session.logout();
 		this.oc.getSessionOrder().setCurrentOrder(null);
 		return "generalHome.html";
 	}
-	
+
 	public String createOrder(){
 		Customer currentCustomer = this.session.getCurrentCustomer();
 		if(currentCustomer==null)
@@ -76,15 +80,29 @@ public class CustomerController {
 			return this.oc.createOrder(currentCustomer);
 		}
 	}
-	
 
+	public List<Order> getOrders(){
+		return this.customerFacade.getOrders(this.session.getCurrentCustomer());
+	}
+
+	public String goMyOrders(){
+		if(this.session.getCurrentCustomer()==null){
+			return "loginCustomer";
+		} else if(this.getOrders().isEmpty()||this.getOrders()==null)
+			return "noOrders";
+		else return "customerOrders";
+	}
+
+	public String orderDetails() {
+		return "orderDetails";
+	}
 	public String getFc() {
 		return fc;
 	}
 	public void setFc(String fc) {
 		this.fc = fc;
 	}
-	
+
 	public String getLastname() {
 		return lastname;
 	}
@@ -127,7 +145,7 @@ public class CustomerController {
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
-	
+
 	public String getFirstname() {
 		return firstname;
 	}
@@ -193,7 +211,15 @@ public class CustomerController {
 		this.session = session;
 	}
 
-	
-	
-	
+	public OrderController getOc() {
+		return oc;
+	}
+
+	public void setOc(OrderController oc) {
+		this.oc = oc;
+	}
+
+
+
+
 }

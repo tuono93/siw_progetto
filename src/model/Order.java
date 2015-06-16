@@ -10,17 +10,20 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@NamedQuery(name = "getClosedOrders", query = "SELECT o FROM Order o WHERE o.state LIKE :state")
 @Table(name = "orders")
 public class Order {
 	
@@ -37,7 +40,7 @@ public class Order {
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date consignmentOrderDate;
-	@OneToMany(cascade = {CascadeType.ALL})
+	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
 	@JoinColumn(name ="orders_id")
 	private List<OrderLine> orderLines;
 	@ManyToOne
@@ -52,8 +55,8 @@ public class Order {
 		Calendar calendar = new GregorianCalendar();
 		Date newDate = calendar.getTime();
 		this.openingOrderDate = newDate;
-		this.closingOrderDate=newDate;
-		this.consignmentOrderDate=newDate;
+		this.closingOrderDate= null;
+		this.consignmentOrderDate= null;
 		this.customer = customer;
 		this.orderLines= new ArrayList<OrderLine>();
 		this.state="open";

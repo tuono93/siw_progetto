@@ -15,6 +15,9 @@ public class AdministrationController {
 	@ManagedProperty(value ="#{productController}")
 	private ProductController pc;
 	
+	@ManagedProperty(value ="#{orderController}")
+	private OrderController oc;
+	
 	@ManagedProperty(value="#{param.password}")
 	private String password;
 	private Administration admnin;
@@ -50,6 +53,13 @@ public class AdministrationController {
 			return "newCustomer";
 	}
 	
+	public String listClosedOrders(){
+		 return this.oc.listClosedOrders();
+	}
+	
+	
+	
+	
 	
 	public String getPassword() {
 		return password;
@@ -75,6 +85,12 @@ public class AdministrationController {
 	}
 	public void setPc(ProductController pc) {
 		this.pc = pc;
+	}
+	public OrderController getOc() {
+		return oc;
+	}
+	public void setOc(OrderController oc) {
+		this.oc = oc;
 	}
 	
 	

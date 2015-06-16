@@ -15,12 +15,13 @@
 		<class>model.OrderLine</class>
 		<properties>
 			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" />
-
 			<property name="openjpa.jdbc.MappingDefaults"
 				value="ForeignKeyDeleteAction=restrict,JoinForeignKeyDeleteAction=restrict" />
 			<property name="openjpa.Log"
 				value="DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE" />
-				
+
+            <property name = "openjpa.jdbc.EagerFetchMode" value="join"/>
+
 		</properties>
 	</persistence-unit>
 </persistence>

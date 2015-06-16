@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
@@ -15,6 +17,7 @@ import model.ProductDescriptionFacade;
 @ManagedBean(name= "orderController")
 @RequestScoped
 public class OrderController {
+
 	@EJB(beanName="oFacade")
 	private OrderFacade orderFacade;
 	@EJB(beanName="olFacade")
@@ -35,9 +38,9 @@ public class OrderController {
 		if(this.sessionOrder.getCurrentOrder()!=null)
 			return "anOrderAlreadyExist";
 		else{
-		Order o=this.orderFacade.createOrder(c);
-		this.sessionOrder.setCurrentOrder(o);
-		return "newFirstOrderLine";
+			Order o=this.orderFacade.createOrder(c);
+			this.sessionOrder.setCurrentOrder(o);
+			return "newFirstOrderLine";
 		}
 	}
 
@@ -56,6 +59,22 @@ public class OrderController {
 		}
 	}
 
+	public List<Order> getOrders(){
+		return this.orderFacade.getOrders();
+	}
+
+
+	public String detailsCustomer(){
+		return "detailsOrderCustomer";
+	}
+
+
+	public String goArchive(){
+		if(this.getOrders().isEmpty() || this.getOrders()==null)
+			return "noOrdersAdmin";
+		else return "ordersArchive";
+	}
+
 	public String goShoppingCart(){
 		if(this.sessionOrder.getCurrentOrder()==null || this.sessionOrder.getCurrentOrder().getOrderLines().isEmpty())
 			return "shoppingCartEmpty";
@@ -68,18 +87,46 @@ public class OrderController {
 		this.sessionOrder.setCurrentOrder(null);
 		return "shoppingCartEmpty";
 	}
-	
+
 	public String goHomeAndDelete(){
 		this.orderFacade.deleteCurrentOrder(this.sessionOrder.getCurrentOrder());
 		this.sessionOrder.setCurrentOrder(null);
 		return "customerHome";
 	}
-	
+
 	public Double getTotal(){
 		return this.orderFacade.getTotal(this.sessionOrder.getCurrentOrder());
-			
+
 	}
 
+	public  String listClosedOrders(){
+		return "closedOrders";
+
+	}
+
+	public String evadeOrder(){
+		if (this.orderFacade.iCanEvadeOrder(this.sessionOrder.getCurrentOrder())){
+			this.orderFacade.evadeOrder(this.sessionOrder.getCurrentOrder());
+			return "orderEvaso";}
+		else
+			return "orderSuspended";
+
+	}
+
+
+
+
+	public List<Order> getClosedOrders(){
+		return this.orderFacade.getClosedOrders();
+	}
+	public String orderDetails() {
+		return "orderDetails";
+	}
+
+	public String closedOrderDetails(){
+		this.sessionOrder.setCurrentOrder(order);
+		return "closedOrderDetails";
+	}
 	public OrderFacade getOrderFacade() {
 		return orderFacade;
 	}
@@ -122,10 +169,10 @@ public class OrderController {
 
 	public String confirmCurrentOrder() {
 		Order currentOrder=this.sessionOrder.getCurrentOrder();
-			this.orderFacade.confirmOrder(currentOrder);
-			this.order=currentOrder;
-			this.sessionOrder.setCurrentOrder(null);
-			return "summaryOrder";
+		this.orderFacade.confirmOrder(currentOrder);
+		this.order=currentOrder;
+		this.sessionOrder.setCurrentOrder(null);
+		return "summaryOrder";
 	}
 
 	public ProductDescriptionFacade getPdFacade() {
@@ -143,8 +190,6 @@ public class OrderController {
 	public void setOrder(Order order) {
 		this.order = order;
 	}
-
-	
 
 
 

@@ -15,22 +15,32 @@
 		<b>You logged as Admin:</b>
 	</h1>
 	<f:view>
-	<h:form>
-		<ul>
-			<li><h:commandLink
-							action="#{administrationController.newCustomer}"
-							value="New Customer">
-						</h:commandLink></li>
-			<li><h:commandLink
-							action="#{administrationController.newProduct}"
-							value="New Product">
-						</h:commandLink></li>
+		<h:form>
+			<ul>
+				<li><h:commandLink
+						action="#{administrationController.newCustomer}"
+						value="New Customer">
+					</h:commandLink></li>
+				<li><h:commandLink
+						action="#{administrationController.newProduct}"
+						value="New Product">
+					</h:commandLink></li>
 
-			<li><a href='<c:url value="/faces/productCatalog.jsp" />'>View
-					the product catalog</a></li>
-		</ul>
-		
-		<h:commandButton value="Logout" action="#{administrationController.logoutAdministration}" />
+				<li><h:commandLink action="#{orderController.goArchive}"
+						value="Orders Archive">
+					</h:commandLink></li>
+
+				<li><a href='<c:url value="/faces/productCatalog.jsp" />'>View
+						the product catalog</a></li>
+				<li><h:commandLink
+						action="#{administrationController.listClosedOrders}"
+						value="Evade Order">
+					</h:commandLink></li>
+
+			</ul>
+
+			<h:commandButton value="Logout"
+				action="#{administrationController.logoutAdministration}" />
 		</h:form>
 	</f:view>
 </body>

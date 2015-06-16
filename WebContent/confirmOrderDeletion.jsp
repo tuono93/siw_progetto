@@ -15,11 +15,8 @@
 		<b>Shopping Cart</b>
 	</h1>
 	<h2>
-<<<<<<< HEAD
+
 		<b>Are you sure to delete current order, ${customerManager.currentCustomer.firstname}?</b>
-=======
-		<b>Are you sure to delete current order?, ${customerManager.currentCustomer.firstname}</b>
->>>>>>> branch 'master' of https://github.com/tuono93/siw_progetto.git
 	</h2>
 	<h:form>
 

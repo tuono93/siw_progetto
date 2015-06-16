@@ -45,8 +45,7 @@ public class Customer {
 	private Date dateOfRegistration;
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private Address address;
-	@OneToMany
-	@JoinColumn(name ="orders_id")
+	@OneToMany(mappedBy="customer")
 	private List<Order> orders;
 	
 	
