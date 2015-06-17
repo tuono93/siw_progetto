@@ -49,7 +49,7 @@ public class AdministrationController {
 	public String newCustomer(){
 		if(this.session.getCurrentAdministration()==null)
 			return "loginAdministrator";
-		else
+		else    
 			return "newCustomer";
 	}
 	
