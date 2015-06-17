@@ -54,7 +54,7 @@ public class AdministrationController {
 	}
 	
 	public String listClosedOrders(){
-		 if(this.session.getCurrentAdministration()==null)
+		 if(this.session.getCurrentAdministration()==null)       
 			return "loginAdministrator";
 		 
 		 else return this.oc.listClosedOrders();
