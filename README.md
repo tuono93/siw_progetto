@@ -1,0 +1,136 @@
+# siw_progetto
+repository centrale per il progetto di siw
+
+
+Caso d'uso UC1: consulta listino
+Attore primario: utente non registrato
+-L'utente consulta il catalogo dei prodotti
+-L'utente sceglie un prodotto e ne richiede i dettagli
+-Il sistema mostra i dettagli del prodotto scelto
+-L'utente ripete i passi precedenti un numero indefinito di volte
+
+
+Caso d'uso UC2: effettua ordine
+Attore primario: cliente (utente registrato)
+-Il cliente crea un ordine:
+-Se il cliente ha già un ordine in corso, gli viene chiesto di eliminarlo prima di iniziare un
+nuovo ordine.
+-Il cliente consulta il catalogo dei prodotti
+-Il cliente sceglie un prodotto e aggiunge codice e quantità del prodotto scelto all'ordine:
+-Se il cliente inserire il codice di un prodotto non esistente, gli viene chiesto di aggiungere
+un altro prodotto
+-Il sistema imposta il prezzo unitario del prodotto scelto al prezzo corrente di listino
+-Il sistema registra la riga ordine e indirizza al cliente al suo carrello dove è presente il riepilogo del
+suo ordine corrente
+-Il cliente ripete i due passi precedenti finché necessario
+-Il cliente "chiude" l'ordine
+-Il sistema registra l'ordine e mostra un riepilogo di tale ordine
+Precondizioni: il cliente è identificato e autenticato
+
+
+Caso d'uso UC3: consulta i propri ordini
+Attore primario: cliente registrato
+-Il cliente consulta l'elenco dei propri ordini
+-Il sistema mostra al cliente l'elenco dei suoi ordini
+-Il cliente chiede il dettaglio di un ordine
+-Il sistema mostra il dettaglio dell'ordine
+-Il cliente ripete i due passi precedenti finché necessario
+Precondizioni: il cliente è identificato e autenticato
+
+
+Caso d'uso UC4: inserimento prodotti nel catalogo
+Attore primario: amministrazione
+-L'amministratore inizia l'attività “aggiungi prodotto/i”
+-L'amministratore inserisce il codice di una descrizione prodotto:
+-Se nel catalogo sono già registrati prodotti di quel tipo, l'amministratore inserisce la
+quantità e successivamente il provider dei prodotti da aggiungere.
+-Se il provider non è registrato, l'amministratore inserisce le informazioni del nuovo
+provider che viene registrato dal sistema
+-Se nel catalogo non sono registrati prodotti di quel tipo, l'amministratore inserisce nome,
+prezzo unitario, descrizione per quel prodotto, la quantità di prodotti da aggiungere e
+successivamente il provider dei prodotti da aggiungere.
+-Se il provider non è registrato, l'amministratore inserisce le informazioni del nuovo
+provider che viene registrato dal sistema
+-Il sistema registra tutte le informazioni
+-I punti precedenti vengono ripetuti fino a che necessario
+-Precondizioni: l'amministratore è identificato e autenticato
+ESEMPIO CASO D'USO 4.
+Gli i-Phone6 hanno codice “IP6” e un amministratore vuole inserire 5 i-phone6, 3 forniti dal
+fornitore “iTech srl” che ha partita iva 111 e 2 forniti da “Apple Spa” con partita iva 222:
+-l'amministratore inserisce il codice “IP6” per inserire i 3 iphone6 di “iTech srl”
+-ipotizzando che questo prodotto non sia ancora registrato, l'amministratore deve inserire nome,
+prezzo, descrizione, quantità (3) e provider (111, “iTech Srl”) dei prodotti da aggiungere
+-ipotizzando che questo provider non sia registrato, l'amministrazione inserisce le informazioni
+necessarie e lo registra
+-il sistema assegna un codice univoco a ciascun iphone6, gli associa il provider “iTech Srl” e
+memorizza la descrizione per questi prodotti e la quantità presente in magazzino (3).
+-l'amministratore inserisce il codice “IP6” per inserire i 2 iphone6 “Apple Spa”
+-essendo questo prodotto già registrato, l'amministratore inserisce la quantità di prodotti di quel tipo
+da aggiungere e il codice del provider (222, “Apple Spa”)
+-ipotizzando che questo provider sia già registrato, l'inserimento dei prodotti viene completata
+-il sistema assegna un codice univoco ai 2 iPhone, gli associa il provider “Apple Spa” e aggiorna la
+quantità di iphone6 presenti in magazzino (5)
+
+
+Caso d'uso UC5: recupera indirizzo cliente
+Attore primario: amministrazione
+Scenario principale:
+-L'amministratore sceglie “archivio ordini”
+-L’amministratore seleziona l'id di un ordine
+-Il sistema mostra all’amministratore i dati del cliente che ha effettuato l’ordine
+Precondizioni: l’amministratore è identificato e autenticato
+
+
+Caso d'uso UC6: evasione ordine
+Attore primario: amministrazione
+-L'amministratore inizia l'attività “evadi ordine”
+-Il sistema presenta all'amministratore gli ordini chiusi, ma non evasi
+-L'amministratore sceglie un ordine
+-Il sistema evade l'ordine: aggiorna l'ordine inserendo la data di spedizione e aggiorna la quantità
+dei prodotti in magazzino (sottraendo la quantità di prodotti usati per l'ordine)
+Precondizioni:
+-l'amministratore è identificato e autenticato
+Eccezioni:
+-alcuni prodotti potrebbero non essere presenti in magazzino nella quantità specificata dall'ordine.
+In questo caso l'ordine rimane in sospeso
+
+
+Caso d'uso UC7: registra cliente
+Attore primario: amministrazione
+-L'amministratore inizia l'attività “registra cliente”
+-L'amministratore digita le informazioni del cliente da registrare
+-Il sistema registra il cliente
+-L'amministratore comunica al cliente le sue credenziali di accesso al sistema
+
+
+Caso d'uso UC8: login cliente
+Attore primario: cliente registrato
+-Il cliente sceglie l'attività “login Utente”
+-Il cliente inserisce email e password
+-Il sistema mostra al cliente l'elenco delle attività che può effettuare:
+-Se le credenziali sono sbagliate, o il cliente non è registrato, il cliente può ritentare il login
+o rimanere sulla home generale
+
+
+Caso d'uso UC9: consulta carrello
+Attore primario: cliente registrato
+-Il cliente usa il sistema per consultare il suo ordine corrente
+-Il sistema mostra il riepilogo dell'ordine corrente
+-Il cliente può confermare, cancellare, o lasciare in sospeso l'ordine corrente
+
+
+Caso d'uso UC10: logout cliente
+Attore primario: cliente registrato
+-Il cliente usa il sistema per effettuare il logout
+-Il sistema mostra la home generale e cancella l'eventuale ordine corrente del cliente
+
+
+Caso d'uso UC11: login Amministrazione
+-Un amministratore vuole accedere all'area riservata all'amministrazione(password = "emarket")
+-L'amministratore inserisce il codice segreto fornitogli dall'azienda
+-Il sistema mostra l'elenco delle attività che può effettuare
+
+
+Caso d'uso UC12: logout Amministrazione
+-Un amministratore usa il sistema per effettuare il logout
+-Il sistema mostra la home generale
