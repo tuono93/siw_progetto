@@ -34,7 +34,7 @@ public class AdministrationController {
 			return "failedLogin"; 
 		
 	}
-	public String logoutAdministration(){
+	public String logoutAdministration(){                
 		this.session.logout();
 		return "generalHome.html";
 	}
