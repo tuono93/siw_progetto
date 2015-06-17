@@ -86,8 +86,8 @@ Attore primario: amministrazione
 -L'amministratore inizia l'attività “evadi ordine”
 -Il sistema presenta all'amministratore gli ordini chiusi, ma non evasi
 -L'amministratore sceglie un ordine
--Il sistema evade l'ordine: aggiorna l'ordine inserendo la data di spedizione e aggiorna la quantità
-dei prodotti in magazzino (sottraendo la quantità di prodotti usati per l'ordine)
+-Il sistema evade l'ordine: aggiorna l'ordine inserendo la data di spedizione, aggiorna la quantità
+dei prodotti di quel tipo in magazzino (sottraendo la quantità di prodotti usati per l'ordine), ed elimina dal database un numero di prodotti di quel tipo pari alla quantità dei prodotti usati
 Precondizioni:
 -l'amministratore è identificato e autenticato
 Eccezioni:
