@@ -70,7 +70,7 @@ public class OrderFacade {
 
 
 
-	public Order evadeOrder(Order o){
+	   public Order evadeOrder(Order o){
 		Calendar calendar = new GregorianCalendar();
 		Date newDate = calendar.getTime();
 		o.setConsignmentOrderDate(newDate);
@@ -91,7 +91,7 @@ public class OrderFacade {
 			}
 		em.persist(o);
 		return o;	
-		}
+		} 
 
 
 
